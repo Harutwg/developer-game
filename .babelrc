@@ -1,0 +1,12 @@
+{
+  "presets": ["react-native"],
+  "plugins": [
+    ["module-alias", [
+      { "src": "./app", "expose": "appRoot" },
+      { "src": "./app/components", "expose": "components" },
+      { "src": "./app/redux", "expose": "reduxStore" },
+      { "src": "./app/screens", "expose": "screens" },
+      { "src": "./app/helpers", "expose": "helpers" },
+    ]]
+  ]
+}
