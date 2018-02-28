@@ -34,6 +34,10 @@ module.system=haste
 munge_underscores=true
 
 module.name_mapper='^[./a-zA-Z0-9$_-]+\.\(bmp\|gif\|jpg\|jpeg\|png\|psd\|svg\|webp\|m4v\|mov\|mp4\|mpeg\|mpg\|webm\|aac\|aiff\|caf\|m4a\|mp3\|wav\|html\|pdf\)$' -> 'RelativeImageStub'
+module.name_mapper='^components\/\(.*\)$' -> '<PROJECT_ROOT>/app/components/\1'
+module.name_mapper='^reduxStore\/\(.*\)$' -> '<PROJECT_ROOT>/app/redux/\1'
+module.name_mapper='^screens\/\(.*\)$' -> '<PROJECT_ROOT>/app/screens/\1'
+module.name_mapper='^helpers\/\(.*\)$' -> '<PROJECT_ROOT>/app/helpers/\1'
 
 module.file_ext=.js
 module.file_ext=.jsx
