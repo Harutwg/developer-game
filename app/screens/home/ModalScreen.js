@@ -8,6 +8,7 @@ import {
     StyleSheet
 } from 'react-native';
 
+import Logo from 'components/logo';
 import TouchableIcon from 'components/touchable-icon';
 import { actions } from './mock-actions';
 
@@ -45,7 +46,12 @@ export default class ModalScreen extends PureComponent<IModalScreenProps, {}> {
                         onPress={this.props.onRequestClose}
                     />
                     <View style={styles.userInfo}>
-                        <Text style={styles.userName}> {'<'}Epamer{'>'} </Text>
+                        <Logo
+                            title={'Epamer'}
+                            fontStyle={{
+                                fontSize: 30,
+                            }}
+                        />
                         <Text style={styles.userPosition}> Junior Software Engineer </Text>
                     </View>
                     <View style={styles.actionsMenu}>
@@ -95,7 +101,7 @@ const styles = StyleSheet.create({
         fontSize: 25,
     },
     userPosition: {
-        color: 'blue',
+        color: '#5bc1d5',
         fontSize: 14,
     },
     actionsMenu: {

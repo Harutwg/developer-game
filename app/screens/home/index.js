@@ -5,13 +5,13 @@ import {
     View,
     Image,
     StyleSheet,
-    Button,
-    Text,
-    TouchableOpacity
 } from 'react-native';
 
+import Logo from 'components/logo';
 import ActionBar from 'components/action-bar';
 import ModalScreen from './ModalScreen';
+
+import TouchableIcon from 'components/touchable-icon';
 
 type IHomeScreenProps = {
     characteristics: Array<Object>;
@@ -50,15 +50,48 @@ export default class HomeScreen extends PureComponent<IHomeScreenProps, IHomeScr
         const { openModal = (() => {}) } = params;
 
         return {
-            title: '\<epamer\>',
-            headerRight: (
-                <TouchableOpacity
-                    onPress={openModal}
-                    style={styles.headerModalButton}
-                >
-                    <Text>Open</Text>
-                </TouchableOpacity>
+            headerTitle: (
+                <Logo
+                    title = 'epamer'
+                    style={{
+                        width: '100%',
+                        alignItems: 'center',
+                    }}
+                    fontStyle={{
+                        fontSize: 22
+                    }}
+                    titleStyle={{
+                        color: 'white'
+                    }}
+                />
             ),
+            headerRight: (
+                <View style={styles.headerButtons}>
+                    <TouchableIcon
+                        name="ios-information-circle-outline"
+                        size={40}
+                        style={{ marginRight: 20 }}
+                        iconStyle={{ color: 'white' }}
+                        onPress={() => navigation.navigate('About')}
+                    />
+                    <TouchableIcon
+                        name="ios-person-outline"
+                        size={40}
+                        style={{ marginRight: 20 }}
+                        iconStyle={{ color: 'white' }}
+                        onPress={openModal}
+                    />
+                </View>
+            ),
+            headerStyle: {
+                backgroundColor: 'black',
+            },
+            headerTintColor: 'white',
+            headerTitleStyle: {
+                color: 'white',
+                width: '100%',
+                textAlign: 'center',
+            },
         };
     };
 
@@ -118,6 +151,11 @@ export default class HomeScreen extends PureComponent<IHomeScreenProps, IHomeScr
 }
 
 const styles = StyleSheet.create({
+    headerButtons: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
     headerModalButton: {
         marginRight: 20,
     },

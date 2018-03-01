@@ -28,7 +28,7 @@ export default class ActionBar extends PureComponent<IActionBarProps, {}> {
                 </View>
                 <View style={styles.actionBarContainer}>
                     <View style={{
-                        backgroundColor: 'red',
+                        backgroundColor: '#a73e4b',
                         width: `${this.props.percentage}%`,
                         flexGrow: 1,
                     }}/>
@@ -55,7 +55,4 @@ const styles = StyleSheet.create({
         borderRadius: 40,
 
     },
-    actionBarBody: {
-        backgroundColor: 'red',
-    }
 });

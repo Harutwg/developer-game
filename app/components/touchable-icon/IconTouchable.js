@@ -17,7 +17,6 @@ type IIconTouchableProps = {
     onPress: Function,
     style: Object,
     iconStyle: Object,
-    key: string | number,
     title: string,
 };
 

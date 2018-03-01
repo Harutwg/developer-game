@@ -9,7 +9,13 @@ import {
     TouchableOpacity
 } from 'react-native';
 
-export default class LoginScreen extends PureComponent<{}, {}> {
+type ILoginScreenProps = {
+    navigation: Object
+};
+
+import Logo from 'components/logo';
+
+export default class LoginScreen extends PureComponent<ILoginScreenProps, {}> {
     static navigationOptions = { header: null };
 
     componentWillMount(){
@@ -19,7 +25,7 @@ export default class LoginScreen extends PureComponent<{}, {}> {
         }
     }
 
-    componentWillReceiveProps(nextProps){
+    componentWillReceiveProps(nextProps: ILoginScreenProps){
         const { navigate } = nextProps.navigation;
         if(true) {
             navigate('Home');
@@ -30,24 +36,13 @@ export default class LoginScreen extends PureComponent<{}, {}> {
         const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
-                <View style={styles.logo}>
-                    <Text style={{
-                        fontFamily: 'Oswald-Regular',
-                        fontSize: 70
-                    }}>
-                        <Text style={{
-                            color: 'aqua'
-                        }}>
-                            {'<'}
-                        </Text>
-                            epamer
-                        <Text style={{
-                            color: 'aqua'
-                        }}>
-                            {'>'}
-                        </Text>
-                    </Text>
-                </View>
+                <Logo
+                    title="epamer"
+                    titleStyle={{
+                        color: '#555',
+                    }}
+                    style={styles.logo}
+                />
                 <View style={styles.signin}>
                     <TextInput
                         placeholder="Username"
