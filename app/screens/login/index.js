@@ -9,6 +9,8 @@ import {
     TouchableOpacity
 } from 'react-native';
 
+import { navigateAndReset } from "helpers/navigation";
+
 type ILoginScreenProps = {
     navigation: Object
 };
@@ -18,22 +20,12 @@ import Logo from 'components/logo';
 export default class LoginScreen extends PureComponent<ILoginScreenProps, {}> {
     static navigationOptions = { header: null };
 
-    componentWillMount(){
-        const { navigate } = this.props.navigation;
-        if(true) {
-            navigate('Home');
-        }
-    }
-
-    componentWillReceiveProps(nextProps: ILoginScreenProps){
-        const { navigate } = nextProps.navigation;
-        if(true) {
-            navigate('Home');
-        }
-    }
+    handleLogin = () => {
+        const { dispatch } = this.props.navigation;
+        navigateAndReset(dispatch, 'Home');
+    };
 
     render() {
-        const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
                 <Logo
@@ -48,19 +40,17 @@ export default class LoginScreen extends PureComponent<ILoginScreenProps, {}> {
                         placeholder="Username"
                         underlineColorAndroid='transparent'
                         style={styles.textinput}
-                        editable = {true}
+                        editable
                     />
                     <TextInput
                         placeholder="Password"
                         underlineColorAndroid='transparent'
                         style={styles.textinput}
-                        editable = {true}
-                        secureTextEntry={true}
+                        editable
+                        secureTextEntry
                     />
                     <TouchableOpacity
-                        onPress={() => {
-                            navigate('Home');
-                        }}
+                        onPress={this.handleLogin}
                         style={styles.loginButton}
                     >
                         <Text style={styles.loginButtonText}> Login </Text>
