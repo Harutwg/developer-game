@@ -9,29 +9,40 @@ import {
     TouchableOpacity
 } from 'react-native';
 
-export default class LoginScreen extends PureComponent<{}, {}> {
+type ILoginScreenProps = {
+    navigation: Object
+};
+
+import Logo from 'components/logo';
+
+export default class LoginScreen extends PureComponent<ILoginScreenProps, {}> {
     static navigationOptions = { header: null };
+
+    componentWillMount(){
+        const { navigate } = this.props.navigation;
+        if(true) {
+            navigate('Home');
+        }
+    }
+
+    componentWillReceiveProps(nextProps: ILoginScreenProps){
+        const { navigate } = nextProps.navigation;
+        if(true) {
+            navigate('Home');
+        }
+    }
+
     render() {
+        const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
-                <View style={styles.logo}>
-                    <Text style={{
-                        fontSize: 70
-                    }}>
-                        <Text style={{
-                            fontFamily: 'Oswald-Bold',
-                            color: 'aqua'
-                        }}>
-                            {'<'}
-                        </Text>
-                            epamer
-                        <Text style={{
-                            color: 'aqua'
-                        }}>
-                            {'>'}
-                        </Text>
-                    </Text>
-                </View>
+                <Logo
+                    title="epamer"
+                    titleStyle={{
+                        color: '#555',
+                    }}
+                    style={styles.logo}
+                />
                 <View style={styles.signin}>
                     <TextInput
                         placeholder="Username"
@@ -46,7 +57,12 @@ export default class LoginScreen extends PureComponent<{}, {}> {
                         editable = {true}
                         secureTextEntry={true}
                     />
-                    <TouchableOpacity style={styles.loginButton}>
+                    <TouchableOpacity
+                        onPress={() => {
+                            navigate('Home');
+                        }}
+                        style={styles.loginButton}
+                    >
                         <Text style={styles.loginButtonText}> Login </Text>
                     </TouchableOpacity>
                 </View>
@@ -68,7 +84,8 @@ const styles = StyleSheet.create({
     },
     signin: {
         paddingTop: 40,
-        flexGrow: 1,
+        flexGrow: 0,
+        height: 250,
         justifyContent: 'space-between'
     },
     textinput: {
