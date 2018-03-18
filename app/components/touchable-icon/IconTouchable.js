@@ -9,6 +9,7 @@ import {
 import IconEvil from 'react-native-vector-icons/EvilIcons';
 import IconFA from 'react-native-vector-icons/FontAwesome';
 import IonIcon from 'react-native-vector-icons/Ionicons';
+import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
 
 type IIconTouchableProps = {
     iconFamily: 'string',
@@ -30,6 +31,8 @@ export default class IconTouchable extends PureComponent<IIconTouchableProps, {}
                 return IconFA;
             case 'IonIcon':
                 return IonIcon;
+            case 'SimpleLineIcons':
+                return SimpleLineIcon;
             default: return IonIcon;
         }
     };

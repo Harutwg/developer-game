@@ -5,6 +5,7 @@ import {
     View,
     StyleSheet,
     Text,
+    Animated
 } from 'react-native';
 
 type IActionBarProps = {
@@ -12,26 +13,47 @@ type IActionBarProps = {
     title: 'string',
 };
 
-export default class ActionBar extends PureComponent<IActionBarProps, {}> {
-    render() {
-        const actionBarBodyStyles = StyleSheet.create({
-            body: {
-            }
-        });
+type IActionBarState = {
+    widthAnim: any,
+};
 
+export default class ActionBar extends PureComponent<IActionBarProps, IActionBarState> {
+    constructor(props: IActionBarProps) {
+        super(props);
+
+        this.state = {
+            widthAnim: new Animated.Value(0),
+        };
+    }
+
+    componentDidMount() {
+        Animated.timing(
+            this.state.widthAnim,
+            {
+                toValue: this.props.percentage,
+                duration: 1000,
+            }
+        ).start();
+    }
+
+    render() {
+        const width = this.state.widthAnim.interpolate({
+            inputRange: [0, 100],
+            outputRange: ['0%', '100%']
+        });
         return (
             <View style={styles.actionBar}>
                 <View style={styles.actionBarTitle}>
                     <Text>
                         {this.props.title}
-                        </Text>
+                    </Text>
                 </View>
                 <View style={styles.actionBarContainer}>
-                    <View style={{
+                    <Animated.View style={{
                         backgroundColor: '#a73e4b',
-                        width: `${this.props.percentage}%`,
+                        width,
                         flexGrow: 1,
-                    }}/>
+                    }} />
                 </View>
             </View>
         );

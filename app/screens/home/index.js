@@ -13,6 +13,8 @@ import ModalScreen from './ModalScreen';
 
 import TouchableIcon from 'components/touchable-icon';
 
+import { navigateAndReset } from "helpers/navigation";
+
 type IHomeScreenProps = {
     characteristics: Array<Object>;
     navigation: Object
@@ -21,6 +23,8 @@ type IHomeScreenProps = {
 type IHomeScreenState = {
     modalOpened: boolean,
 };
+
+const voidFunction = (): void => {};
 
 export default class HomeScreen extends PureComponent<IHomeScreenProps, IHomeScreenState> {
 
@@ -47,7 +51,10 @@ export default class HomeScreen extends PureComponent<IHomeScreenProps, IHomeScr
 
     static navigationOptions = ({ navigation }: Object) => {
         const { params = {} } = navigation.state;
-        const { openModal = (() => {}) } = params;
+        const {
+            openModal = voidFunction,
+            handleLogout = voidFunction
+        } = params;
 
         return {
             headerTitle: (
@@ -63,6 +70,16 @@ export default class HomeScreen extends PureComponent<IHomeScreenProps, IHomeScr
                     titleStyle={{
                         color: 'white'
                     }}
+                />
+            ),
+            headerLeft: (
+                <TouchableIcon
+                    name="logout"
+                    iconFamily="SimpleLineIcons"
+                    size={30}
+                    style={{ marginLeft: 20 }}
+                    iconStyle={{ color: 'white' }}
+                    onPress={handleLogout}
                 />
             ),
             headerRight: (
@@ -91,7 +108,7 @@ export default class HomeScreen extends PureComponent<IHomeScreenProps, IHomeScr
                 color: 'white',
                 width: '100%',
                 textAlign: 'center',
-            },
+            }
         };
     };
 
@@ -104,8 +121,13 @@ export default class HomeScreen extends PureComponent<IHomeScreenProps, IHomeScr
 
         props.navigation.setParams({
             openModal: this.openModal,
+            handleLogout: this.handleLogout,
         });
     }
+
+    handleLogout = () => {
+        navigateAndReset(this.props.navigation.dispatch, 'Login');
+    };
 
     openModal = (): void => {
         this.setState({

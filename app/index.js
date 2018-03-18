@@ -1,6 +1,9 @@
 // @flow
 
 import React, { PureComponent } from 'react';
+import { Provider } from 'react-redux';
+import store from 'reduxStore/store';
+
 import Login from 'screens/login/';
 import About from 'screens/about/';
 import Actions from 'screens/actions/';
@@ -29,7 +32,9 @@ const StackScreens = StackNavigator({
 export default class AppContainer extends PureComponent<any, any> {
     render() {
         return (
-            <StackScreens />
+            <Provider store={store}>
+                <StackScreens />
+            </Provider>
         );
     }
 }
