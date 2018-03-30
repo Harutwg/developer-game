@@ -6,7 +6,8 @@
       { "src": "./app/components", "expose": "components" },
       { "src": "./app/redux", "expose": "reduxStore" },
       { "src": "./app/screens", "expose": "screens" },
-      { "src": "./app/helpers", "expose": "helpers" }
+      { "src": "./app/helpers", "expose": "helpers" },
+      { "src": "./app/api", "expose": "api" }
     ]]
   ]
 }
